@@ -1,21 +1,26 @@
 import React from 'react'
-import axios from 'axios';
+import { useState } from 'react';
+import { Link, Routes, Route } from 'react-router-dom';
+import Show from './components/Show';
+import Home from './components/Home';
+import Services from './components/Services';
+
 const App = () => {
-
-  const getproducts = () => {
-    const api = 'https://fakestoreapi.com/products';
-    axios.get(api).then(products => {
-      console.log(products);
-    }).catch(error => {
-      console.log(error);
-    })
-
-  }
 
 
   return (
     <div className="pt-[5%] pl-[5%] mt-4">
-      <button onClick={getproducts} className="px-5 py-2 bg-red-300 rounded-lg">Call APi products</button>
+      <nav className='flex justify-center gap-10'>
+        <Link to='/'>Home</Link>
+        <Link to='/show'>Show</Link>
+        <Link to='/services'>Service</Link>
+      </nav>
+      <hr />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/show" element={<Show />}></Route>
+        <Route path="/services" element={<Services />}></Route>
+      </Routes>
     </div >
   )
 }

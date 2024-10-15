@@ -1,13 +1,14 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
+import instance from '../utils/axios';
 import axios from 'axios';
+
 
 const Home = () => {
   const [products, setproducts] = useState([]);
 
-  const api = 'https://fakestoreapi.com/products';
   const getproducts = () => {
-    axios.get(api).then(products => {
+    instance.get('/products').then(products => {
       console.log(products.data)
       setproducts(products.data);
     }).catch(error => {
